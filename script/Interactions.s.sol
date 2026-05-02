@@ -14,9 +14,10 @@ contract MintAbelleNFT is Script {
 
         mintNft(mostRecentlyDeployed);
     }
+
     function mintNft(address _contract) public {
         vm.startBroadcast();
-        AbelleNFT(_contract).mintNft(METADATA);        
+        AbelleNFT(_contract).mintNft(METADATA);
         vm.stopBroadcast();
     }
 }
