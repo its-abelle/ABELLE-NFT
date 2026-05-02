@@ -1,0 +1,39 @@
+{
+  "name": "Abelle Blue Bird",
+  "description": "A beautiful blue jay perched on a weathered branch against a soft green background. This serene nature photography captures the elegance and vibrant plumage of this majestic bird.",
+  "image": "ipfs://QmPQ8SY19mZY2ziw2FPGMd7RRBTi1XC4DjSMMqCDCV6PWn",
+  "attributes": [
+    {
+      "trait_type": "Species",
+      "value": "Blue Jay"
+    },
+    {
+      "trait_type": "Primary Color",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Setting",
+      "value": "Branch"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Photography Style",
+      "value": "Nature Photography"
+    },
+    {
+      "trait_type": "Time of Day",
+      "value": "Daytime"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Common"
+    },
+    {
+      "trait_type": "Quality",
+      "value": "High Definition"
+    }
+  ]
+}

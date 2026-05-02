@@ -4,5 +4,14 @@
       "name": "v1.15.0",
       "rev": "0844d7e1fc5e60d77b68e469bff60265f236c398"
     }
+  },
+  "lib/foundry-devops": {
+    "tag": {
+      "name": "0.4.0",
+      "rev": "efff097a87e70c3d15661c9f2a2daeae0b33d5d5"
+    }
+  },
+  "lib/openzeppelin-contracts": {
+    "rev": "b8c7b9e82d2b340cf82f2913c38e3a0bac2f96ae"
   }
 }

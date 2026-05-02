@@ -7,14 +7,12 @@ contract AbelleNFT is ERC721 {
     uint256 private s_tokenCounter;
     mapping(uint256 => string) private s_tokenIdtoURI;
 
-    //QmPQ8SY19mZY2ziw2FPGMd7RRBTi1XC4DjSMMqCDCV6PWn
-
-    constructor() ERC721("AbelleNFT", "ABELLE") {
+    constructor() ERC721("ABELLE", "ABL") {
         s_tokenCounter = 0;
     }
 
-    function mintNFT(string memory tokenURI) public {
-        s_tokenIdtoURI[s_tokenCounter] = tokenURI;
+    function mintNft(string memory tokenUri) public {
+        s_tokenIdtoURI[s_tokenCounter] = tokenUri;
         _safeMint(msg.sender, s_tokenCounter);
         s_tokenCounter++;
     }
