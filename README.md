@@ -1,66 +1,103 @@
-## Foundry
+# AbelleNFT Mini Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A small Foundry project for learning how to build, test, and deploy a simple ERC-721 NFT contract.
 
-Foundry consists of:
+## Project Overview
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This repository demonstrates:
 
-## Documentation
+- a custom ERC-721 NFT contract using OpenZeppelin's `ERC721`
+- a minting function that stores token metadata URI on-chain
+- a deployment script built with Foundry `Script`
+- unit tests written with `forge-std/Test.sol`
 
-https://book.getfoundry.sh/
+## Smart Contract
 
-## Usage
+### `src/AbelleNFT.sol`
 
-### Build
+- Inherits from `ERC721`
+- Sets token name to `ABELLE` and symbol to `ABL`
+- Tracks minted token IDs using an internal counter
+- Stores token metadata in a `mapping(uint256 => string)`
+- Implements `mintNft(string memory tokenUri)` to mint an NFT and associate metadata
+- Overrides `tokenURI(uint256 tokenId)` to return stored metadata
 
-```shell
-$ forge build
+## Test Coverage
+
+### `test/testAbelleNFT.t.sol`
+
+- Deploys the `AbelleNFT` contract using the `DeployAbelleNFT` script
+- Verifies the contract name is `ABELLE`
+- Checks that minting works and the user receives ownership of the token
+- Confirms the stored token metadata URI is returned correctly
+
+## Scripts
+
+### `script/DeployAbelleNFT.s.sol`
+
+- Deploys the `AbelleNFT` contract
+- Uses `vm.startBroadcast()` and `vm.stopBroadcast()` to send a real transaction when run with Foundry
+
+## Requirements
+
+- Foundry (`forge`, `cast`, `anvil`)
+- Solidity `^0.8.0`
+- `lib/openzeppelin-contracts`
+- `lib/forge-std`
+- `lib/foundry-devops` (optional for extra tooling)
+
+## Setup
+
+1. Install Foundry if needed:
+
+```sh
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
 ```
 
-### Test
+2. Install dependencies from `lib/` if not already present:
 
-```shell
-$ forge test
+```sh
+forge install
 ```
 
-### Format
+## Common Commands
 
-```shell
-$ forge fmt
+```sh
+forge build
+forge test
+forge test -vv
+forge fmt
+forge clean
 ```
 
-### Gas Snapshots
+## Deploy Locally
 
-```shell
-$ forge snapshot
+To deploy the contract locally using `forge script`:
+
+```sh
+forge script script/DeployAbelleNFT.s.sol:DeployAbelleNFT --fork-url <RPC_URL> --private-key <PRIVATE_KEY>
 ```
 
-### Anvil
+## Notes
 
-```shell
-$ anvil
+- The contract stores off-chain metadata URIs on-chain. This is simple and good for learning, but in production you may prefer a separate metadata contract or IPFS pinning.
+- You can mint multiple NFTs sequentially; token IDs start at `0` and increment by `1`.
+
+## Recommended `foundry.toml` Remappings
+
+```toml
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+remappings = [
+  "@openzeppelin/contracts=lib/openzeppelin-contracts/contracts",
+  "forge-std=lib/forge-std/src",
+  "foundry-devops=lib/foundry-devops/src"
+]
 ```
 
-### Deploy
+## License
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+MIT
